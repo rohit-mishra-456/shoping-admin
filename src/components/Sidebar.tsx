@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import Logo from '../images/logo/logo.svg';
+import Logo from '../images/logo/logo-dark.svg';
 import SidebarLinkGroup from './SidebarLinkGroup';
 
 interface SidebarProps {
@@ -63,9 +63,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       }`}
     >
       {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 ">
         <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+          <img src={Logo} alt='logo' className="h-20 ml-1" />
         </NavLink>
 
         <button
@@ -218,7 +218,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       fill=""
                     />
                   </svg>
-                  Calendar
+                  Users
                 </NavLink>
               </li>
               {/* <!-- Menu Item Calendar --> */}
@@ -248,7 +248,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       fill=""
                     />
                   </svg>
-                  Profile
+                  Gift Bundles
                 </NavLink>
               </li>
               {/* <!-- Menu Item Profile --> */}
@@ -305,7 +305,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             fill="white"
                           />
                         </svg>
-                        Forms
+                        Gift Ideas
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${
                             open && 'rotate-180'
@@ -395,7 +395,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Tables
+                  Products
                 </NavLink>
               </li>
               {/* <!-- Menu Item Tables --> */}
@@ -438,7 +438,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       </clipPath>
                     </defs>
                   </svg>
-                  Settings
+                  Orders
                 </NavLink>
               </li>
               {/* <!-- Menu Item Settings --> */}
