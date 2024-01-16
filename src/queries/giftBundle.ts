@@ -1,15 +1,15 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query'
+import { createApi } from '@reduxjs/toolkit/query/react';
+import baseQueryInstance from './baseQuery';
  
-const giftBundleQueries = createApi({
+export const bundlesApi = createApi({
     reducerPath: 'giftBundles',
-    baseQuery: fetchBaseQuery({
-        baseUrl: process.env.VITE_APP_API_URL,
-    }),
+    baseQuery: baseQueryInstance,
+    refetchOnMountOrArgChange: 30,
     endpoints: (build) => ({
         getGiftBundles: build.query({
             query: () => ({ url: `bundles?page=1&limit=10` }),
         }),
-        getGiftBundlesById: build.query({
+        getGiftBundleById: build.query({
             query: (id) => ({ url: `bundles?page=1&limit=10/${id}` }),
         }),
         // updateOrder: build.mutation({
@@ -26,5 +26,5 @@ const giftBundleQueries = createApi({
  
 export const {
     useGetGiftBundlesQuery,
-    useGetGiftBundlesByIdQuery,
-} = giftBundleQueries;
+    useGetGiftBundleByIdQuery,
+} = bundlesApi;
