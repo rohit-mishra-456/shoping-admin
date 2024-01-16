@@ -1,0 +1,13 @@
+https://suscel-backend.foobar.in/api/admin/dashboard
+
+
+https://suscel-backend.foobar.in/api/admin/users?page=1&limit=10
+
+
+https://suscel-backend.foobar.in/api/admin/orders?page=1&limit=10
+
+
+https://suscel-backend.foobar.in/api/admin/bundles?page=1&limit=10
+
+
+https://suscel-backend.foobar.in/api/admin/category/categories?page=1&limit=10

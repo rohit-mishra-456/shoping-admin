@@ -5,7 +5,7 @@ export const signin = createAsyncThunk(
   "user/login",
   async (payload: { email: string; password: string }) => {
     // console.log("jfhdj", import.meta.env.VITE_APP_API_URL)
-    const response = await axios.post(`${process.env.VITE_APP_API_URL}/api/admin/login`,
+    const response = await axios.post(`${process.env.VITE_APP_API_URL}/login`,
       {
         email: payload.email,
         password: payload.password,

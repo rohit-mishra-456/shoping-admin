@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query'
  
-const giftBundleQueries = createApi({
-    reducerPath: 'giftBundles',
+const categoriesQueries = createApi({
+    reducerPath: 'categories',
     baseQuery: fetchBaseQuery({
         baseUrl: process.env.VITE_APP_API_URL,
     }),
     endpoints: (build) => ({
-        getGiftBundles: build.query({
-            query: () => ({ url: `bundles?page=1&limit=10` }),
+        getcategories: build.query({
+            query: () => ({ url: `categories?page=1&limit=10` }),
         }),
-        getGiftBundlesById: build.query({
-            query: (id) => ({ url: `bundles?page=1&limit=10/${id}` }),
+        getcategoriesById: build.query({
+            query: (id) => ({ url: `categories?page=1&limit=10/${id}` }),
         }),
         // updateOrder: build.mutation({
         //     query: (id, {data}) => ({ url: `post/${id}` }),
@@ -25,6 +25,6 @@ const giftBundleQueries = createApi({
 })
  
 export const {
-    useGetGiftBundlesQuery,
-    useGetGiftBundlesByIdQuery,
-} = giftBundleQueries;
+    useGetCategoriesQuery,
+    useGetCategoriesByIdQuery,
+} = categoriesQueries;
