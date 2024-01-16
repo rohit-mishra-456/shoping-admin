@@ -1,17 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoDark from "../../images/logo/logo-dark.svg";
 import Logo from "../../images/logo/logo.svg";
+import type { AppDispatch, RootState } from "../../store/index";
+import { useSelector, useDispatch } from "react-redux";
+import { authSlice, signin } from "../../features/authSlice";
 
 import { Button, Checkbox, Form, Input } from "antd";
-
-
-const onFinish = (values: any) => {
-  console.log("Success:", values.username, values.password);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
-};
+import { useEffect } from "react";
 
 type FieldType = {
   username?: string;
@@ -20,6 +15,34 @@ type FieldType = {
 };
 
 const SignIn = () => {
+
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading, error, token, success } = useSelector((root: RootState) => root.auth);
+  const navigate = useNavigate();
+  // console.log("hgcdgsc", process.env)
+
+  useEffect(() => {
+    console.log("bnnfgndbfd", loading, success, token)
+    if (!loading && success && token) {
+      navigate('/');
+    }
+  }, [loading, success, token]);
+
+  // useEffect(()=>{
+  //   throw new Error('error')
+  // }, [])
+ 
+  const onFinish = (values: any) => {
+    console.log('Success:', values.username, values.password);
+  
+    dispatch(signin({ email: values.username, password: values.password }));
+  };
+ 
+  const onFinishFailed = (errorInfo: any) => {
+    console.log('Failed:', errorInfo);
+  };
+
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -173,10 +196,10 @@ const SignIn = () => {
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}
                 style={{ maxWidth: 600 }}
-                initialValues={{ username: "", password:""}}
+                initialValues={{ username: "", password: "" }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
-                autoComplete="off"
+                autoComplete="on"
               >
                 <Form.Item<FieldType>
                   label="Username"
@@ -207,7 +230,11 @@ const SignIn = () => {
                 </Form.Item>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                  <Button type="primary" className="bg-[#4096ff]" htmlType="submit">
+                  <Button
+                    type="primary"
+                    className="bg-[#4096ff]"
+                    htmlType="submit"
+                  >
                     Submit
                   </Button>
                 </Form.Item>
@@ -248,6 +275,7 @@ const SignIn = () => {
                   </span>
                   Sign in with Google
                 </button>
+                {error && <p>Oops! Something Went Wrong </p>}
 
                 <div className="mt-6 text-center">
                   <p>

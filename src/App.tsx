@@ -1,20 +1,27 @@
-import { Suspense, lazy, useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
+import { Suspense, lazy, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
-import ECommerce from './pages/Dashboard/ECommerce';
-import SignIn from './pages/Authentication/SignIn';
-import SignUp from './pages/Authentication/SignUp';
-import Loader from './common/Loader';
-import routes from './routes';
+import ECommerce from "./pages/Dashboard/ECommerce";
+import SignIn from "./pages/Authentication/SignIn";
+import SignUp from "./pages/Authentication/SignUp";
+import Loader from "./common/Loader";
+import routes from "./routes";
+import Protected from "./features/ProtectedRoutes";
+import ProtectedRoute from "./features/ProtectedRoutes";
+import ErrorBoundary from "./components/ErrorBoundary";
 
-const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
+const DefaultLayout = lazy(() => import("./layout/DefaultLayout"));
+
+
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
+
+    // throw new Error('error....')
   }, []);
 
   return loading ? (
@@ -27,7 +34,10 @@ function App() {
         containerClassName="overflow-auto"
       />
       <Routes>
-        <Route path="/auth/signin" element={<SignIn />} />
+        {/* <Route path="/auth/signin" element={<ProtectedRoute children={<SignIn />} />} /> */}
+        <Route path="/auth/signin" element={
+        <SignIn />
+        } />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
           <Route index element={<ECommerce />} />
@@ -38,9 +48,11 @@ function App() {
                 key={index}
                 path={path}
                 element={
-                  <Suspense fallback={<Loader />}>
-                    <Component />
-                  </Suspense>
+                  <ProtectedRoute>
+                    <Suspense fallback={<Loader />}>
+                      <Component />
+                    </Suspense>
+                  </ProtectedRoute>
                 }
               />
             );
@@ -50,5 +62,7 @@ function App() {
     </>
   );
 }
+
+
 
 export default App;
