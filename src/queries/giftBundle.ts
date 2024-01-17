@@ -9,6 +9,7 @@ export const bundlesApi = createApi({
         getGiftBundles: build.query({
             query: () => ({ url: `bundles?page=1&limit=10` }),
         }),
+
         getGiftBundleById: build.query({
             query: (id) => ({ url: `bundles?page=1&limit=10/${id}` }),
         }),

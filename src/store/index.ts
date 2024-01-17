@@ -3,7 +3,7 @@ import authSliceReducer from '../features/authSlice';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { dashboardApi } from '../queries/dashboard';
 import { bundlesApi } from '../queries/giftBundle';
-import { giftApis } from '../queries/giftIdeas';
+import { giftIdeasApis } from '../queries/giftIdeas';
  
  
 export const store = configureStore({
@@ -12,13 +12,13 @@ export const store = configureStore({
     // Add the generated reducer as a specific top-level slice
     [dashboardApi.reducerPath]: dashboardApi.reducer,
     [bundlesApi.reducerPath]: bundlesApi.reducer,
-    [giftApis.reducerPath]: giftApis.reducer,
+    [giftIdeasApis.reducerPath]: giftIdeasApis.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       dashboardApi.middleware,
       bundlesApi.middleware,
-      giftApis.middleware,
+      giftIdeasApis.middleware,
     ),
 })
 setupListeners(store.dispatch);
