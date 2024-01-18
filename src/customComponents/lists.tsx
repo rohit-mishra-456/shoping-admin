@@ -5,96 +5,122 @@ interface IProps {
   isLoading: boolean;
   error: any;
 }
+
 export const Lists = (props: IProps) => {
   const { title, handler, data, isLoading } = props;
-  console.log(data,'working');
-//   const a = data?.data?.bundles;
-//   const result = hello.map((el: any) => el)
-//   console.log('result', result);
+  console.log("data", data);
 
+  console.log(data);
 
-  if (isLoading) {
-    return <>Loading....</>;
-  }
+  const handlePrice = (price: number, title: string) => {
+    if (title === "Orders") {
+      return `$${price}`;
+    }
+  };
+
+//   const handleName = (name: number, title: string) => {
+//    if (title === "bundles") {
+//      return `$${name}`;
+//    }
+//  };
+
+  if (isLoading) return <>Loading....</>;
   return (
     <>
-      {/* this is data block */}
-
-      <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
-   <li className="pb-3 sm:pb-4">
-      <div className="flex items-center space-x-4 rtl:space-x-reverse">
-         <div className="flex-shrink-0">
+      <div className="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex items-center justify-between mb-4">
+          <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
             {title}
-         </div>
-         <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-               Neil Sims
-            </p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-               email@flowbite.com
-            </p>
-         </div>
-         <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-            2422
-         </div>
+          </h5>
+          <a
+            href="#"
+            className="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+          >
+            View all
+          </a>
+        </div>
+        <div className="flow-root">
+          <ul
+            role="list"
+            className="divide-y divide-gray-200 dark:divide-gray-700"
+          >
+            {data?.length ? (
+              data?.map((el: any, i: number) => {
+                return (
+                  <li className="py-3 sm:py-4">
+                    <div className="flex items-center">
+                      <div className="flex-shrink-0">
+                        <img
+                          className="w-8 h-8 rounded-full"
+                          src={el?.image ?? ""}
+                          alt="Neil image"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0 ms-4">
+                        <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                          {el?.name ?? ""}
+                          {/* {handleName(el?.name, title)} */}
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                          {el?.email ?? ""}
+                        </p>
+                        <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                          {el?._id ?? ""}
+                        </p>
+                      </div>
+                      {/* <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    {el?._id ?? ""}
+                    </div> */}
+                      <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                        {/* ${el?.price ?? ""} */}
+                        {handlePrice(el?.price, title)}
+                      </div>
+                    </div>
+                  </li>
+                );
+              })
+            ) : (
+              <>No records found</>
+            )}
+          </ul>
+        </div>
       </div>
-   </li>
-   <li className="py-3 sm:py-4">
-      <div className="flex items-center space-x-4 rtl:space-x-reverse">
-         <div className="flex-shrink-0">
-            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="Neil image"/>
-         </div>
-         <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-               Bonnie Green
-            </p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-               email@flowbite.com
-            </p>
-         </div>
-         <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-            $3467
-         </div>
-      </div>
-   </li>
-   <li className="py-3 sm:py-4">
-      <div className="flex items-center space-x-4 rtl:space-x-reverse">
-         <div className="flex-shrink-0">
-            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-2.jpg" alt="Neil image"/>
-         </div>
-         <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-               Michael Gough
-            </p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-               email@flowbite.com
-            </p>
-         </div>
-         <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-            $67
-         </div>
-      </div>
-   </li>
-   <li className="py-3 sm:py-4">
-      <div className="flex items-center space-x-4 rtl:space-x-reverse">
-         <div className="flex-shrink-0">
-            <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-5.jpg" alt="Neil image"/>
-         </div>
-         <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-               Thomas Lean
-            </p>
-            <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-               email@flowbite.com
-            </p>
-         </div>
-         <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-            $2367
-         </div>
-      </div>
-   </li>
-</ul>
 
+      {/* <ul className="max-w-md divide-y divide-gray-200 dark:divide-gray-700 bg-white ">
+        {data?.length ? (
+          data?.map((el: any, i: number) => {
+            return (
+              <li className="pb-3 sm:pb-4">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
+                  <div className="flex-shrink-0">
+                    <img
+                      className="w-8 h-8 rounded-full"
+                      src={el?.image ?? ""}
+                      alt="Neil image"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
+                      {el?._id ?? ""}
+                    </p>
+                    <p className="text-sm text-gray-500 truncate dark:text-gray-400">
+                      {el?.name ?? ""}
+                    </p>
+                  </div>
+                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    ${el?.price ?? ""}
+                  </div>
+                  <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                    ${el?.email ?? ""}
+                  </div>
+                </div>
+              </li>
+            );
+          })
+        ) : (
+          <>No records found</>
+        )}
+      </ul> */}
     </>
   );
 };

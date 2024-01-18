@@ -26,7 +26,6 @@ class ErrorBoundary extends React.Component<
   render(): React.ReactNode {
     const { hasError } = this.state;
     const { children, fallbackComponent: FallbackComponent } = this.props;
-console.log('hnji', hasError)
     if (hasError && FallbackComponent) {
       return <FallbackComponent error={()=>{}} resetErrorBoundary={()=> {}} />;
     }

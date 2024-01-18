@@ -14,7 +14,7 @@ export const TopCards = () => {
     if (key?.toLowerCase().includes("order")) url = "/orders?p=1";
     console.log(key);
     if (key?.toLowerCase().includes("user")) url = "/users?p=1";
-    console.log("hnjiii", url);
+  
     navigate(url);
   };
   const getIcon = (key: string) => {
@@ -24,7 +24,6 @@ export const TopCards = () => {
     if (key?.toLowerCase().includes("newuser")) return faUsers;
   };
   const { data, isLoading } = useGetDashboardDataQuery(null);
-  console.log("lllllllllllllllllll", data?.data);
 
   if (isLoading) {
     return <>loading</>;

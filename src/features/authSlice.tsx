@@ -11,7 +11,7 @@ export const signin = createAsyncThunk(
         return response?.data || {};
     }
 );
- 
+
 export interface InitialState {
     token: string | null,
     success: boolean,
@@ -54,6 +54,6 @@ export const authSlice = createSlice({
             });
     },
 });
-console.log(authSlice.actions)
+
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;import { createApi } from '@reduxjs/toolkit/query/react';

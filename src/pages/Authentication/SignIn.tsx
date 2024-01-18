@@ -20,7 +20,6 @@ const SignIn = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, token, success } = useSelector((root: RootState) => root.auth);
   const navigate = useNavigate();
-  // console.log("hgcdgsc", process.env)
 
   useEffect(() => {
     console.log("bnnfgndbfd", loading, success, token)
